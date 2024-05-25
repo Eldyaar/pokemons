@@ -1,12 +1,14 @@
+import { Routes, Route } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 import axios from 'axios'
 
-import PokemonCard from './components/pokemon-card/Pokemon'
-import './App.css'
-
+import PokemonList from './components/pokemon-list/PokemonList'
+import SinglePokemonPage from './components/single-pokemon-page/SinglePokemonPage'
+import Layout from './components/layout/Layout'
 
 const App = () => {
   const [data, setData] = useState([])
+  const [search, setSearch] = useState('')
 
   useEffect(() => {
     const getData = async () => {
@@ -21,7 +23,6 @@ const App = () => {
         }))
 
         setData(allData)
-        console.log(data)
       } catch (e) {
         console.error(`error: ${e}`)
         return null
@@ -31,15 +32,18 @@ const App = () => {
     getData()
   }, [])
 
+  const filteredData = data.filter((pokemon) =>
+    pokemon.name.toLowerCase().includes(search.toLowerCase())
+  )
+
+
   return (
-    <div className='container max-w-960 m-auto'>
-      <h1 className='text-5xl text-black font-medium mb-10 mt-10 text-center'>Pokemon List</h1>
-      <div className=' w-full flex justify-center items-center flex-wrap gap-8'>
-        {data.map((item, index) => (
-          <PokemonCard key={index} data={item} />
-        ))}
-      </div>
-    </div>
+    <Routes>
+      <Route path='/' element={<Layout search={search} setSearch={setSearch} />}>
+        <Route index element={<PokemonList filteredData={filteredData} />} />
+        <Route path='/:pokemonName' element={<SinglePokemonPage data={data} />} />
+      </Route>
+    </Routes>
   )
 }
 

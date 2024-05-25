@@ -1,0 +1,11 @@
+.pokemon {
+   color: #000;
+   cursor: pointer;
+   border: 1px solid #d0d0d0;
+   transition: box-shadow 0.3s ease;
+}
+
+.pokemon:hover {
+   border: 1px solid #c9e9ff;
+   box-shadow: 0 0 30px rgba(57, 186, 197, 0.3);
+}

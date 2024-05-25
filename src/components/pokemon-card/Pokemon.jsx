@@ -1,14 +1,29 @@
+import { Link } from 'react-router-dom'
+
+import './pokemon.css'
+
 
 const PokemonCard = ({ data }) => {
    const { name, imgUrl } = data
 
    return (
-      <div className="flex items-center justify-between px-10 py-10 bg-[#add8e6] rounded-2xl px-8">
-         <div className="inline-block w-28 h-28">
-            <img src={imgUrl} alt="pokemon_img" className="w-28 h-28" />
+      <Link 
+         to={name} 
+         className="pokemon flex items-center justify-between px-10 py-10 rounded-2xl px-8 w-[300px] cursor-pointer"
+      >
+         <div 
+            className="inline-block w-28 h-28" 
+            style={{
+               backgroundImage: `url("${imgUrl}")`,
+               backgroundSize: 'cover',
+               backgroundPosition: 'center',
+               backgroundRepeat: 'no-repeat'
+            }}
+         >
+            
          </div>
-         <div className="text-xl">{name}</div>
-      </div>
+         <div className="text-xl text-[#707070]">{name}</div>
+      </Link>
    )
 }
 
