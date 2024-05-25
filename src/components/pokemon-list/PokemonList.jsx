@@ -1,4 +1,4 @@
-import MPokemonCard from '../pokemon-card/Pokemon'
+import PokemonCard from '../pokemon-card/Pokemon'
 
 const PokemonList = ({ filteredData }) => {
 
@@ -6,7 +6,7 @@ const PokemonList = ({ filteredData }) => {
       <div className=' w-full flex justify-center items-center flex-wrap gap-8 my-10'>
          {filteredData.length > 0 ? (
             filteredData.map((item, index) => (
-               <MPokemonCard key={item.name} index={index} data={item} />
+               <PokemonCard key={item.name} index={index} data={item} />
             ))
          ) : (
             <p className='text-xl text-[#ff0000]'>По вашему поиску нету совпадений :( </p>
